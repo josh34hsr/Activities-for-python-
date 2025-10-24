@@ -1,1 +1,14 @@
+class Dog:
+    def __init__(self, name, breed):
+     self.name = name
+     self.breed = breed
 
+    def bark(self):
+     print(f"{self.name} says woof!")
+
+    def info(self):
+     print(f"My name is {self.name} and i am a {self.breed}.")
+
+dog1 = Dog("Buddy", "Golden Retriever")
+dog1.bark()
+dog1.info()
