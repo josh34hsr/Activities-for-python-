@@ -1,0 +1,119 @@
+Inheritance
+1.
+class Animal {
+    void speak() {
+        System.out.println("Some sound");
+    }
+}
+
+class Dog extends Animal {
+    @Override
+    void speak() {
+        System.out.println("Woof!");
+    }
+}
+
+class Cat extends Animal {
+    @Override
+    void speak() {
+        System.out.println("Meow!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog dog = new Dog();
+        Cat cat = new Cat();
+        dog.speak();
+        cat.speak();
+    }
+}
+
+2.
+class Vehicle {
+    String brand;
+    int fuel;
+
+    Vehicle(String brand, int fuel) {
+        this.brand = brand;
+        this.fuel = fuel;
+    }
+}
+
+class Car extends Vehicle {
+    int doors;
+
+    Car(String brand, int fuel, int doors) {
+        super(brand, fuel); // calls parent constructor
+        this.doors = doors;
+    }
+
+    void drive() {
+        if (fuel > 0) {
+            fuel--;
+            System.out.println(brand + " is driving. Fuel left: " + fuel);
+        } else {
+            System.out.println("Out of fuel!");
+        }
+    }
+}
+
+public class VehicleTest {
+    public static void main(String[] args) {
+        Car myCar = new Car("Toyota", 5, 4);
+        myCar.drive();
+    }
+}
+
+Encapsulation
+1.
+class BankAccount {
+    private double balance = 0;
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance)
+            balance -= amount;
+        else
+            System.out.println("Insufficient funds");
+    }
+
+    double getBalance() {
+        return balance;
+    }
+}
+
+public class Bank {
+    public static void main(String[] args) {
+        BankAccount account = new BankAccount();
+        account.deposit(100);
+        System.out.println(account.getBalance());
+    }
+}
+2.
+class Person {
+    private int age;
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 0)
+            this.age = age;
+        else
+            System.out.println("Age must be positive");
+    }
+}
+
+public class PersonTest {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.setAge(25);
+        System.out.println("Age: " + p.getAge());
+    }
+}
+
