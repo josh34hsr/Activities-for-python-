@@ -1,131 +1,88 @@
 Polymorphism
 1.
-class InkPrinter {
-    void printDocument() {
-        System.out.println("Printing using ink...");
-    }
-}
+class InkPrinter:
+    def print_document(self):
+        return "Printing using ink..."
 
-class LaserPrinter {
-    void printDocument() {
-        System.out.println("Printing using laser...");
-    }
-}
+class LaserPrinter:
+    def print_document(self):
+        return "Printing using laser..."
 
-public class PrinterTest {
-    public static void main(String[] args) {
-        InkPrinter ink = new InkPrinter();
-        LaserPrinter laser = new LaserPrinter();
 
-        ink.printDocument();
-        laser.printDocument();
-    }
-}
-
+for printer in (InkPrinter(), LaserPrinter()):
+    print(printer.print_document())
 2.
-interface Speaker {
-    void speak();
-}
+def make_it_speak(obj):
+    obj.speak()
 
-class Bird implements Speaker {
-    public void speak() {
-        System.out.println("Chirp!");
-    }
-}
+class Bird:
+    def speak(self):
+        print("Chirp!")
 
-class Robot implements Speaker {
-    public void speak() {
-        System.out.println("Beep bop!");
-    }
-}
+class Robot:
+    def speak(self):
+        print("Beep bop!")
 
-public class DuckTypingExample {
-    static void makeItSpeak(Speaker s) {
-        s.speak();
-    }
 
-    public static void main(String[] args) {
-        makeItSpeak(new Bird());
-        makeItSpeak(new Robot());
-    }
-}
+make_it_speak(Bird())
+make_it_speak(Robot())
 
 Abstraction
+
 1.
-abstract class Shape {
-    abstract double area();
-}
+from abc import ABC, abstractmethod
+import math
 
-class Circle extends Shape {
-    double radius;
-    Circle(double radius) {
-        this.radius = radius;
-    }
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
 
-    double area() {
-        return Math.PI * radius * radius;
-    }
-}
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
 
-class Rectangle extends Shape {
-    double width, height;
-    Rectangle(double width, double height) {
-        this.width = width;
-        this.height = height;
-    }
+    def area(self):
+        return math.pi * self.radius ** 2
 
-    double area() {
-        return width * height;
-    }
-}
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
-public class ShapeTest {
-    public static void main(String[] args) {
-        Circle c = new Circle(5);
-        Rectangle r = new Rectangle(4, 6);
+    def area(self):
+        return self.width * self.height
 
-        System.out.println("Circle area: " + c.area());
-        System.out.println("Rectangle area: " + r.area());
-    }
-}
+
+circle = Circle(5)
+print(circle.area())
 
 2.
-abstract class Employee {
-    abstract double calculatePay();
-}
+from abc import ABC, abstractmethod
 
-class HourlyEmployee extends Employee {
-    int hours;
-    double rate;
+class Employee(ABC):
+    @abstractmethod
+    def calculate_pay(self):
+        pass
 
-    HourlyEmployee(int hours, double rate) {
-        this.hours = hours;
-        this.rate = rate;
-    }
+class HourlyEmployee(Employee):
+    def __init__(self, hours, rate):
+        self.hours = hours
+        self.rate = rate
 
-    double calculatePay() {
-        return hours * rate;
-    }
-}
+    def calculate_pay(self):
+        return self.hours * self.rate
 
-class SalariedEmployee extends Employee {
-    double salary;
+class SalariedEmployee(Employee):
+    def __init__(self, salary):
+        self.salary = salary
 
-    SalariedEmployee(double salary) {
-        this.salary = salary;
-    }
+    def calculate_pay(self):
+        return self.salary
 
-    double calculatePay() {
-        return salary;
-    }
-}
 
-public class EmployeeTest {
-    public static void main(String[] args) {
-        HourlyEmployee hEmp = new HourlyEmployee(40, 20);
-        SalariedEmployee sEmp = new SalariedEmployee(50000);
+h_emp = HourlyEmployee(40, 20)
+s_emp = SalariedEmployee(50000)
 
-        System.out.println("Hourly pay: " + hEmp.calculatePay());
-        System.out.println("Salaried pay: " + sEmp.calculatePay());
-    }
-}
+print(h_emp.calculate_pay())
+print(s_emp.calculate_pay())
