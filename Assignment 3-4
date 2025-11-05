@@ -1,0 +1,131 @@
+Polymorphism
+1.
+class InkPrinter {
+    void printDocument() {
+        System.out.println("Printing using ink...");
+    }
+}
+
+class LaserPrinter {
+    void printDocument() {
+        System.out.println("Printing using laser...");
+    }
+}
+
+public class PrinterTest {
+    public static void main(String[] args) {
+        InkPrinter ink = new InkPrinter();
+        LaserPrinter laser = new LaserPrinter();
+
+        ink.printDocument();
+        laser.printDocument();
+    }
+}
+
+2.
+interface Speaker {
+    void speak();
+}
+
+class Bird implements Speaker {
+    public void speak() {
+        System.out.println("Chirp!");
+    }
+}
+
+class Robot implements Speaker {
+    public void speak() {
+        System.out.println("Beep bop!");
+    }
+}
+
+public class DuckTypingExample {
+    static void makeItSpeak(Speaker s) {
+        s.speak();
+    }
+
+    public static void main(String[] args) {
+        makeItSpeak(new Bird());
+        makeItSpeak(new Robot());
+    }
+}
+
+Abstraction
+1.
+abstract class Shape {
+    abstract double area();
+}
+
+class Circle extends Shape {
+    double radius;
+    Circle(double radius) {
+        this.radius = radius;
+    }
+
+    double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    double width, height;
+    Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    double area() {
+        return width * height;
+    }
+}
+
+public class ShapeTest {
+    public static void main(String[] args) {
+        Circle c = new Circle(5);
+        Rectangle r = new Rectangle(4, 6);
+
+        System.out.println("Circle area: " + c.area());
+        System.out.println("Rectangle area: " + r.area());
+    }
+}
+
+2.
+abstract class Employee {
+    abstract double calculatePay();
+}
+
+class HourlyEmployee extends Employee {
+    int hours;
+    double rate;
+
+    HourlyEmployee(int hours, double rate) {
+        this.hours = hours;
+        this.rate = rate;
+    }
+
+    double calculatePay() {
+        return hours * rate;
+    }
+}
+
+class SalariedEmployee extends Employee {
+    double salary;
+
+    SalariedEmployee(double salary) {
+        this.salary = salary;
+    }
+
+    double calculatePay() {
+        return salary;
+    }
+}
+
+public class EmployeeTest {
+    public static void main(String[] args) {
+        HourlyEmployee hEmp = new HourlyEmployee(40, 20);
+        SalariedEmployee sEmp = new SalariedEmployee(50000);
+
+        System.out.println("Hourly pay: " + hEmp.calculatePay());
+        System.out.println("Salaried pay: " + sEmp.calculatePay());
+    }
+}
