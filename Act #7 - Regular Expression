@@ -1,0 +1,8 @@
+import re
+
+text = "The meetings are set at 09:30, 14:05, and 23:59. Ignore 25:99 as invalid."
+
+# Pattern: HH:MM (00 to 23 hours, 00 to 59 minutes)
+times = re.findall(r"\b([01]\d|2[0-3]):[0-5]\d\b", text)
+
+print(times)
