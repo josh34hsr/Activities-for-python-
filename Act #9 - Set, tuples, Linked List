@@ -1,0 +1,65 @@
+1.Set
+
+students = {"Anna", "Mark", "John", "Anna"}   # duplicate "Anna" removed
+
+print("Initial set:", students)
+
+
+students.add("Grace")
+print("After adding Grace:", students)
+
+students.remove("Mark")
+print("After removing Mark:", students)
+
+print("Is John in the set?", "John" in students)
+
+2.Tuples 
+
+person = ("Jasper", 20, "BSCS")
+
+print("Name:", person[0])
+print("Age:", person[1])
+print("Course:", person[2])
+
+3. Linked List
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        new_node = Node(data)
+
+        if not self.head:
+            self.head = new_node
+            return
+
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+
+        temp.next = new_node
+
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("None")
+
+
+ll = LinkedList()
+ll.append("A")
+ll.append("B")
+ll.append("C")
+
+ll.display()
+
+A -> B -> C -> None
+
